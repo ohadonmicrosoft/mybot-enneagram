@@ -1,0 +1,135 @@
+/* --------------------------------------------------
+   כלליות
+-------------------------------------------------- */
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: "Alef", "Open Sans", sans-serif;
+  background-color: #f6f6f6;
+  direction: rtl;
+  color: #333;
+}
+
+/* קונטיינר מרכזי */
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  position: relative;
+}
+
+/* כותרת עליונה */
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2em;
+  font-weight: 700;
+  color: #444;
+}
+
+/* תיבת התוצאות הראשית */
+.results-box {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fafafa;
+  padding: 20px;
+  min-height: 200px;
+}
+
+/* בלוק לטיפוס (עיקרי או משני) */
+.type-block {
+  margin-bottom: 25px;
+  padding: 15px;
+  border-right: 6px solid #4caf50; /* צבע קו בצד ימין */
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.type-block h2, .type-block h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+/* טיפוס עיקרי */
+.type-block h2 {
+  color: #4caf50; /* ירוק */
+  font-size: 1.4em;
+}
+
+/* טיפוס משני */
+.type-block.secondary-block {
+  border-right-color: #2196f3; /* כחול */
+}
+
+.type-block.secondary-block h3 {
+  color: #2196f3;
+  font-size: 1.2em;
+}
+
+/* תוכן של טיפוס - פסקאות */
+.type-content {
+  line-height: 1.6;
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+/* כיתוב עזר בסוף: */
+.footer-note {
+  margin-top: 30px;
+  font-size: 0.9em;
+  color: #555;
+  text-align: center;
+}
+
+/* כפתור דוגמה אם תרצה להפנות לעמוד אחר */
+.btn {
+  display: inline-block;
+  background: #4caf50;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.3s;
+  margin: 10px 0;
+}
+
+.btn:hover {
+  background: #43a047;
+}
+
+/* כותרת תחתונה (footer) */
+footer {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 0.85em;
+  color: #999;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+}
+
+/* התאמה למסכים קטנים */
+@media (max-width: 600px) {
+  .container {
+    margin: 20px auto;
+    padding: 15px;
+  }
+  .type-block {
+    padding: 10px;
+  }
+  .results-box {
+    padding: 15px;
+  }
+  header h1 {
+    font-size: 1.6em;
+  }
+}
