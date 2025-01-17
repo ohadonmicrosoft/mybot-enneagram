@@ -1,0 +1,4 @@
+# _config.yml
+title: My GitHub Pages Site
+description: This is my awesome site hosted with GitHub Pages.
+theme: jekyll-theme-cayman
