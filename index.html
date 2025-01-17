@@ -1,121 +1,28 @@
 <!DOCTYPE html>
-<html lang="he">
+<html lang="he" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <title>MyBot Enneagram Results</title>
-  <style>
-    body {
-      direction: rtl;
-      font-family: sans-serif;
-      margin: 20px;
-    }
-    .box {
-      max-width: 600px;
-      border: 1px solid #ccc;
-      padding: 1em;
-      border-radius: 6px;
-      margin: auto;
-      background: #f9f9f9;
-    }
-    h1, h2, h3 {
-      margin-top: 0;
-    }
-    .type-info {
-      margin-bottom: 2em;
-    }
-    .footer {
-      text-align: center;
-      margin-top: 2em;
-      color: #666;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <title>בוט אניאגרם - תוצאות</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<div class="box">
-  <h1>תוצאות שאלון האניאגרם</h1>
-  <div id="resultSection"></div>
+<div class="container">
+  <header>
+    <h1>בוט אניאגרם: התוצאות שלך</h1>
+  </header>
+
+  <!-- אזור התוכן העיקרי -->
+  <section id="resultsBox" class="results-box">
+    <!-- התוכן הדינאמי יתווסף כאן באמצעות script.js -->
+  </section>
+
+  <footer>
+    <p>© בוט אניאגרם בהרחבה - הדגמה בעברית</p>
+  </footer>
 </div>
 
-<div class="footer">
-  © כל הזכויות שמורות, MyBot.com
-</div>
-
-<script>
-/**
- * קריאת פרמטר מה-URL, לדוגמה ?type=A&secondary=F
- * נחזיר למשל getQueryParam("type") -> "A"
- */
-function getQueryParam(paramName) {
-  const url = new URL(window.location.href);
-  return url.searchParams.get(paramName);
-}
-
-// מפה של טקסטים לכל טיפוס עיקרי (A–I)
-const primaryTypeTexts = {
-  "A": "טיפוס A - הפרפקציוניסט: אוהב סדר וחוקים, פרפקציוניסט ורודף צדק...",
-  "B": "טיפוס B - המטפל: אמפתי, נותן מעצמו ללא גבולות, דואג לרווחת הזולת...",
-  "C": "טיפוס C - ההישגי: חי בתחרות, שואף להיות תמיד בטופ, מתמקד בהצלחה...",
-  "D": "טיפוס D - האינדיבידואליסט: יצירתי וייחודי, חווה רגשות בעוצמה, מחפש עומק...",
-  "E": "טיפוס E - המומחה: חוקר, סקרן, אוהב לצלול לפרטים ולהבין את העולם לעומק...",
-  "F": "טיפוס F - הנאמן: מסור לקבוצה, חושש לפעמים מביקורת, זקוק לביטחון...",
-  "G": "טיפוס G - הנהנתן: מלא התלהבות, אוהב חוויות חדשות והרפתקאות, בורח משעמום...",
-  "H": "טיפוס H - המנהיג: חזק, אסרטיבי, אומר את האמת בפרצוף, לא מפחד מעימות...",
-  "I": "טיפוס I - המשכין שלום: שוחר הרמוניה, נמנע מקונפליקטים, נינוח ורגוע..."
-};
-
-// מפה של טקסטים אופציונליים לטיפוס משני
-const secondaryTypeTexts = {
-  "A": "משני A מעיד על נטייה לפרפקציוניזם גם ברקע, צורך חזק לשמור על סטנדרטים.",
-  "B": "משני B מעיד על נטייה לתמוך באחרים, צורך חזק באהבה והערכה.",
-  "C": "משני C מעיד על מאפייני הישגיות וכמיהה להכרה.",
-  "D": "משני D - עומק רגשי, יצירתיות וחיפוש אחר ייחודיות.",
-  "E": "משני E - צורך בחקירה אינטלקטואלית, למידה מעמיקה, איסוף מידע.",
-  "F": "משני F - מסירות, נאמנות, נטייה לספקות או חרדות רקע.",
-  "G": "משני G - רוח חופשית, חיפוש אחר הנאה וריגוש.",
-  "H": "משני H - עוצמה, נכונות להתעמת ולהנהיג.",
-  "I": "משני I - רצון לפשרה, הרמוניה, שקט נפשי ויציבות."
-};
-
-// פונקציית הצגה למשתמש
-function showResults() {
-  const primary = getQueryParam("type");      // למשל "A"
-  const secondary = getQueryParam("secondary"); // למשל "F"
-
-  const resultDiv = document.getElementById("resultSection");
-
-  if (!primary) {
-    // אם לא קיבלנו ?type=... בכלל
-    resultDiv.innerHTML = `
-      <h2>לא התקבלה תוצאה</h2>
-      <p>אנא וודא שהגעת לכאן דרך קישור שהתקבל לאחר מילוי השאלון.</p>
-    `;
-    return;
-  }
-
-  // מציגים טקסט לפי הטיפוס העיקרי
-  let mainText = primaryTypeTexts[primary] || "טיפוס לא מזוהה.";
-  let secText = (secondary && secondaryTypeTexts[secondary]) 
-                ? secondaryTypeTexts[secondary] 
-                : "";
-
-  resultDiv.innerHTML = `
-    <div class="type-info">
-      <h2>הטיפוס העיקרי שלך: ${primary}</h2>
-      <p>${mainText}</p>
-    </div>
-    ${secondary ? `
-      <div class="type-info">
-        <h3>הטיפוס המשני שלך: ${secondary}</h3>
-        <p>${secText}</p>
-      </div>
-    ` : ""}
-    <p>זכור/זכרי: כולנו משלבים תכונות שונות, אך הטיפוס העיקרי והמשני שלך הם דומיננטיים בשלב זה בחייך.</p>
-  `;
-}
-
-// נפעיל את הפונקציה מיד כשהעמוד נטען
-window.addEventListener("DOMContentLoaded", showResults);
-</script>
+<!-- קובץ ה-JS שמטפל בפרמטרים ומציג טקסט דינאמי -->
+<script src="script.js"></script>
 </body>
 </html>
